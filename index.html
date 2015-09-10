@@ -3,19 +3,32 @@
   <head>
     <meta charset="utf-8">
     <title>Video Viewer</title>
+    <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <div id="header">
-    <h1 class="page-header">Best <input id="topic-form" type="text" value="random" autofocus /> Videos Ever ❤</h1>
-      </div>
-    <div id="video-chooser"></div>
-    <div id="video-player"></div>
+    <header class="header">
+      <h1 class="page-header">Best 
+          <input id="topic-input" type="text" />
+  <!--        Add clear button later-->
+  <!--        <button id="topic-clear" type="button">X</button>-->
+        Videos Ever ❤
+      </h1>
+      <div id="video-chooser"></div>
+      <div id="balance" class="balance"></div>
+<!--      <div class="spotlight-top"></div>-->
+    </header>
+    <main class="main">
+      <div id="video-player"></div>
+      <div id="curtain-left" class="curtain"></div>
+      <div id="curtain-right" class="curtain"></div>
+<!--      <div class="spotlight-main"></div>-->
+    </main>
 
     <script id="video-item-template" type="text/x-handlebars-template">
       <a href="{{linkURL}}">
-        <span class="link-title">{{title}}</span>
         <img class="thumbnail" src="{{thumbURL}}">
+        <span class="link-title">{{title}}</span>
       </a>
     </script>
 

@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Video Viewer</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div id="header">
+    <h1 class="page-header">Best <input id="topic-form" type="text" value="random" autofocus /> Videos Ever ❤</h1>
+      </div>
+    <div id="video-chooser"></div>
+    <div id="video-player"></div>
+
+    <script id="video-item-template" type="text/x-handlebars-template">
+      <a href="{{linkURL}}">
+        <span class="link-title">{{title}}</span>
+        <img class="thumbnail" src="{{thumbURL}}">
+      </a>
+    </script>
+
+    <script id="player-template" type="text/x-handlebars-template">
+      <iframe src="{{embedURL}}" width="560" height="315"></iframe>
+      <h2 class="player-title">{{title}}</h2>
+      <span class="player-channel">{{channel}}</span>
+    </script>
+
+
+<!--Used for Backbone and ajax-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!--Required for Backbone-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.2/handlebars.min.js"></script>
+<script src="scripts.js"></script>
+
+
+ </body>
+</html>

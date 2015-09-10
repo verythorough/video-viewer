@@ -1,0 +1,28 @@
+body {
+  font: 1em/1.5 sans-serif;
+  text-align: center;
+}
+
+img { max-width: 100%; }
+
+#topic-span {
+  text-transform: capitalize;
+  color: red;
+}
+
+.video-list {
+  list-style: none;
+  text-align: center;
+}
+
+.video-item {
+  display: inline-block;
+  width: 20%;
+  margin-right: 1%;
+  text-align: center;
+}
+
+.link-title,
+.thumbnail {
+  display: block;
+}

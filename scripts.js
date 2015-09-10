@@ -38,6 +38,9 @@ var VideoItemView = Backbone.View.extend({
     e.preventDefault();
     var playerView = new VideoPlayerView({model: this.model});
     $('#video-player').html(playerView.render().$el);
+    $('.curtain').addClass('open');
+    $('#video-player').fadeIn('1000');
+//    $('.spotlight-main').fadeOut('4000');
   }
 });
 
@@ -68,20 +71,25 @@ var VideoListView = Backbone.View.extend({
   }
 });
 
-var topics = ['shiba', 'red panda', 'sea otter', 'river otter', 'maru', 'corgi', 'sleepy kitten'];
-var topic = topics[Math.floor((Math.random() * topics.length))];
+var topics = ['shiba', 'red panda', 'sea otter', 'river otter', 'mugumogu', 'corgi', 'sleepy kitten', 'baby elephant'],
+    topic = topics[Math.floor((Math.random() * topics.length))],
+    $topicInput = $('#topic-input');
 
 function loadList(topic) {
 	$.ajax({type: "GET",
     url: "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=4&safeSearch=moderate&type=video&videoEmbeddable=true&fields=items(id%2Csnippet)&key=AIzaSyCRXTR0G_Slvgyjj_Vgfry6KLiw8pIMlHs&q=" + topic,
     dataType: "json",
     success: function(videosJSON) {
-      var videos = new VideoCollection(videosJSON.items, {parse:true});
-      var vidlist = new VideoListView({collection: videos});
-      //Can't delete this line - debug later
-      console.log(vidlist.render());
-      $('#video-chooser').html(vidlist.$el);
-      $('#video-player').empty();
+      if (videosJSON.items.length < 1) {
+        alert('No videos found! Try a different search.');
+        $topicInput.val('');
+      } else {
+        var videos = new VideoCollection(videosJSON.items, {parse:true});
+        var vidlist = new VideoListView({collection: videos});
+        //Can't delete this line - debug later
+        console.log(vidlist.render());
+        $('#video-chooser').html(vidlist.$el);
+      }
     },
     error: function(xhr, status, e) {
       console.log(status, e);
@@ -90,13 +98,14 @@ function loadList(topic) {
 }
 
 $(document).ready(function() {
-  $('#topic-form').val(topic);
+  $topicInput.val(topic);
   loadList(topic);
-  $("#topic-form").keyup(function (e) {
+  $topicInput.keyup(function (e) {
   if (e.which == 13) {
-    //need to sanitize this
-    var newQuery = $('#topic-form').val();
+    var newQuery = encodeURIComponent($topicInput.val());
     loadList(newQuery);
+    $topicInput.blur();
+    $('.curtain').removeClass('open');
   }
   });
 });

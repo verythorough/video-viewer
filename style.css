@@ -88,6 +88,7 @@ img { max-width: 100%; }
 .balance {
   position: absolute;
   top: 0;
+  background: -webkit-linear-gradient(to left, rgba(0,0,0,0), #212733, rgba(47, 63, 69, 0.993), #212733), -webkit-linear-gradient(to left, rgba(47, 63, 69, 0.997), rgba(21, 43, 51, 0.999), rgba(47, 63, 69, 0.998));
   background: linear-gradient(to left, rgba(0,0,0,0), #212733, rgba(47, 63, 69, 0.993), #212733), linear-gradient(to left, rgba(47, 63, 69, 0.997), rgba(21, 43, 51, 0.999), rgba(47, 63, 69, 0.998));
   background-size: 67px 67px, 53px 53px;
   background-size: 79px, 61px;

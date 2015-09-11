@@ -39,8 +39,7 @@ var VideoItemView = Backbone.View.extend({
     var playerView = new VideoPlayerView({model: this.model});
     $('#video-player').html(playerView.render().$el);
     $('.curtain').addClass('open');
-    $('#video-player').fadeIn('1000');
-//    $('.spotlight-main').fadeOut('4000');
+    $('#video-player').fadeIn(2000);
   }
 });
 
@@ -97,6 +96,16 @@ function loadList(topic) {
   });
 }
 
+var timeoutID;
+
+function delayedEmpty() {
+  timeoutID = window.setTimeout(slowEmpty, 2000);
+}
+
+function slowEmpty() {
+  $('#video-player').empty();
+}
+
 $(document).ready(function() {
   $topicInput.val(topic);
   loadList(topic);
@@ -106,6 +115,8 @@ $(document).ready(function() {
     loadList(newQuery);
     $topicInput.blur();
     $('.curtain').removeClass('open');
+    $('#video-player').fadeOut(2000);
+    delayedEmpty();
   }
   });
 });

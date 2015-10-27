@@ -81,7 +81,7 @@ function loadList(topic) {
     success: function(videosJSON) {
       if (videosJSON.items.length < 1) {
         alert('No videos found! Try a different search.');
-        $topicInput.val('');
+        $topicInput.val('').focus();
       } else {
         var videos = new VideoCollection(videosJSON.items, {parse:true});
         var vidlist = new VideoListView({collection: videos});
